@@ -1,8 +1,14 @@
 // Input a byte from port
-unsigned char port_byte_in(unsigned short port);
+unsigned char in_byte(unsigned short port);
 // Output a byte to port
-void port_byte_out(unsigned short port, unsigned char data);
+void out_byte(unsigned short port, unsigned char data);
 // Input a word from port
-unsigned short port_word_in(unsigned short port);
+unsigned short in_short(unsigned short port);
 // Output a word to port
-void port_word_out(unsigned short port, unsigned short data);
+void out_short(unsigned short port, unsigned short data);
+// Disable interrupt
+void cli();
+// Enable interrupt
+void sti();
+// Halt
+void hlt();

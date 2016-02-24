@@ -1,12 +1,15 @@
 # Automatically generate lists of sources using wildcards.
 C_SOURCES = $(wildcard kernel/*.c drivers/*.c lib/*.c)
+ASM_SOURCES= $(wildcard kernel/*.asm)
 HEADERS = $(wildcard include/*.h include/drivers/*.h)
 ARCH = 32
+CFLAGS = -Wall -Wextra -m${ARCH} -ffreestanding
 
 # TODO : Make sources dep on all header files.
 # 
 # Convert the *.c filenames to *.o to give a list of object files to build
 OBJ = ${C_SOURCES:.c=.o}
+OBJ += ${ASM_SOURCES:.asm=.o}
 
 # Defaul build target
 all : os-image.img
@@ -30,7 +33,7 @@ kernel.bin : kernel/kernel_entry.o ${OBJ}
 # Generic rule for compiling C code to an object file
 # For simplicity , we C files depend on all header files .
 %.o : %.c ${HEADERS}
-	gcc -m${ARCH} -ffreestanding -I./include -c $< -o $@
+	gcc ${CFLAGS} -I./include -c $< -o $@
 
 # Assemble the kernel_entry.
 %.o : %.asm

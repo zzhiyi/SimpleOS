@@ -48,10 +48,10 @@ int get_cursor()
   // reg 15: which is the low byte of the cursor 's offset
   // Once the internal register has been selected , we may read or
   // write a byte on the data register .
-  port_byte_out(REG_SCREEN_CTRL, 14);
-  int offset = port_byte_in(REG_SCREEN_DATA) << 8;
-  port_byte_out(REG_SCREEN_CTRL, 15);
-  offset += port_byte_in(REG_SCREEN_DATA);
+  out_byte(REG_SCREEN_CTRL, 14);
+  int offset = in_byte(REG_SCREEN_DATA) << 8;
+  out_byte(REG_SCREEN_CTRL, 15);
+  offset += in_byte(REG_SCREEN_DATA);
   // Since the cursor offset reported by the VGA hardware is the
   // number of characters , we multiply by two to convert it to
   // a character cell offset .
@@ -63,10 +63,10 @@ void set_cursor(int offset)
   offset /= 2; // Convert from cell offset to char offset .
          // This is similar to get_cursor , only now we write
          // bytes to those internal device registers .
-  port_byte_out(REG_SCREEN_CTRL, 14);
-  port_byte_out(REG_SCREEN_DATA, (offset & 0xff00) >> 8);
-  port_byte_out(REG_SCREEN_CTRL, 15);
-  port_byte_out(REG_SCREEN_DATA, offset & 0xff);
+  out_byte(REG_SCREEN_CTRL, 14);
+  out_byte(REG_SCREEN_DATA, (offset & 0xff00) >> 8);
+  out_byte(REG_SCREEN_CTRL, 15);
+  out_byte(REG_SCREEN_DATA, offset & 0xff);
 }
 
 void print_at(char *message, int col, int row)
@@ -83,6 +83,60 @@ void print_at(char *message, int col, int row)
 }
 
 void print(char *message) { print_at(message, -1, -1); }
+
+void print_hex(unsigned int number)
+{
+  unsigned int mask = 0xff000000;
+  unsigned char byte;
+  unsigned char low;
+  unsigned char high;
+
+  print_char('0', -1, -1, WHITE_ON_BLACK);
+  print_char('x', -1, -1, WHITE_ON_BLACK);
+  for (int i = 0; i < 4; i++) {
+    byte = (number & mask) >> 24;
+    low = byte & 0x0f;
+    high = byte >> 4;
+    if (high <= 9) {
+      print_char(high | 0x30, -1, -1, WHITE_ON_BLACK);
+    } else {
+      print_char(high + 55, -1, -1, WHITE_ON_BLACK);
+    }
+    if (low <= 9) {
+      print_char(low | 0x30, -1, -1, WHITE_ON_BLACK);
+    } else {
+      print_char(low + 55, -1, -1, WHITE_ON_BLACK);
+    }
+    number = number << 8;
+  }
+}
+
+void print_dump(unsigned char *pointer, unsigned int length)
+{
+  unsigned char byte;
+  unsigned char low;
+  unsigned char high;
+
+  for (int i = 0; i < length; i++) {
+    byte = pointer[i];
+    low = byte & 0x0f;
+    high = byte >> 4;
+    if (high <= 9) {
+      print_char(high | 0x30, -1, -1, WHITE_ON_BLACK);
+    } else {
+      print_char(high + 55, -1, -1, WHITE_ON_BLACK);
+    }
+    if (low <= 9) {
+      print_char(low | 0x30, -1, -1, WHITE_ON_BLACK);
+    } else {
+      print_char(low + 55, -1, -1, WHITE_ON_BLACK);
+    }
+
+    if (length % 2 == 0 && length != 0) {
+      print_char(' ', -1, -1, WHITE_ON_BLACK);
+    }
+  }
+}
 
 void clear_screen()
 {

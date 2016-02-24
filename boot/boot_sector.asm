@@ -1,4 +1,4 @@
-	; A boot sector that boots a C kernel in 32- bit protected mode
+	; A boot sector that boots a C kernel in 32-bit protected mode
 	; BIOS place boot sector code at 0x7c00
 	[org 0x7c00]
 	; This is the memory offset to which we will load our kernel

@@ -19,6 +19,10 @@ void print_at(char *message, int col, int row);
 
 void print(char *message);
 
+void print_hex(unsigned int number);
+
+void print_dump(unsigned char *pointer, unsigned int length);
+
 void clear_screen();
 
 /* Advance the text cursor , scrolling the video buffer if necessary . */
