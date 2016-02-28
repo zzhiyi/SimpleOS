@@ -9,19 +9,19 @@
 #define REG_SCREEN_CTRL 0x3D4
 #define REG_SCREEN_DATA 0x3D5
 /* Print a char on the screen at col , row , or at cursor position */
-void print_char(char character, int col, int row, char attribute_byte);
+void print_char(const char character, int col, int row, char attribute_byte);
 
 int get_cursor();
 
 void set_cursor(int offset);
 
-void print_at(char *message, int col, int row);
+void print_at(const char *message, int col, int row);
 
-void print(char *message);
+void print(const char *message);
 
 void print_hex(unsigned int number);
 
-void print_dump(unsigned char *pointer, unsigned int length);
+void print_dump(const unsigned char *pointer, unsigned int length);
 
 void clear_screen();
 

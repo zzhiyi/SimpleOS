@@ -1,6 +1,6 @@
 #include <drivers/screen.h>
 /* Print a char on the screen at col , row , or at cursor position */
-void print_char(char character, int col, int row, char attribute_byte)
+void print_char(const char character, int col, int row, char attribute_byte)
 {
   /* Create a byte ( char ) pointer to the start of video memory */
   unsigned char *vidmem = (unsigned char *)VIDEO_ADDRESS;
@@ -69,7 +69,7 @@ void set_cursor(int offset)
   out_byte(REG_SCREEN_DATA, offset & 0xff);
 }
 
-void print_at(char *message, int col, int row)
+void print_at(const char *message, int col, int row)
 {
   // Update the cursor if col and row not negative .
   if (col >= 0 && row >= 0) {
@@ -82,7 +82,7 @@ void print_at(char *message, int col, int row)
   }
 }
 
-void print(char *message) { print_at(message, -1, -1); }
+void print(const char *message) { print_at(message, -1, -1); }
 
 void print_hex(unsigned int number)
 {
@@ -111,7 +111,7 @@ void print_hex(unsigned int number)
   }
 }
 
-void print_dump(unsigned char *pointer, unsigned int length)
+void print_dump(const unsigned char *pointer, unsigned int length)
 {
   unsigned char byte;
   unsigned char low;

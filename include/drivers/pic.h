@@ -1,4 +1,5 @@
 #include <lowlevel.h>
+#include <drivers/screen.h>
 #define ICW1_ICW4 0x01      /* ICW4 (not) needed */
 #define ICW1_SINGLE 0x02    /* Single (cascade) mode */
 #define ICW1_INTERVAL4 0x04 /* Call address interval 4 (8) */

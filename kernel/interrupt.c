@@ -53,16 +53,16 @@ void interrupt_setup()
 	set_handler(&idt[0x21], interrupt_handler_0x21);
 	set_handler_default(&idt[0x21]);
 	idtr.size = sizeof(idt) - 1;
-	print("idtr.size :");
+	idtr.idt = idt;
+	/*print("\nidtr.size :");
 	print_hex(idtr.size);
 	print("\n");
-	idtr.idt = idt;
 	print("&idtr:");
 	print_hex(&idtr);
 	print("\n");
 	print("idt:");
 	print_hex(idt);
-	print("\n");
+	print("\n");*/
 }
 
 void interrupt_init()

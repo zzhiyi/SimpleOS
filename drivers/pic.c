@@ -1,4 +1,3 @@
-#include <lowlevel.h>
 #include <drivers/pic.h>
 
 /* initialize the PIC controllers, giving them specified vector offsets
