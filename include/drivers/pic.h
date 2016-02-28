@@ -1,3 +1,5 @@
+#ifndef PIC_H
+#define PIC_H
 #include <lowlevel.h>
 #include <drivers/screen.h>
 #define ICW1_ICW4 0x01      /* ICW4 (not) needed */
@@ -28,3 +30,4 @@ void PIC_remap(int offset1, int offset2);
 void PIC_acknowledge(unsigned int interrupt_number);
 void PIC_init();
 void io_wait();
+#endif

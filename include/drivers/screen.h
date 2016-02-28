@@ -1,3 +1,5 @@
+#ifndef SCREEN_H
+#define SCREEN_H
 #include <lowlevel.h>
 #include <lib.h>
 #define VIDEO_ADDRESS 0xb8000
@@ -29,3 +31,4 @@ void clear_screen();
 int handle_scrolling(int cursor_offset);
 
 int get_screen_offset(int col, int row);
+#endif

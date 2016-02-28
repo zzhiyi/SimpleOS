@@ -1,7 +1,8 @@
+#ifndef INTERRUPT_H
+#define INTERRUPT_H
 #include <lowlevel.h>
 #include <drivers/pic.h>
 #include <drivers/screen.h>
-
 struct interrupt_entry {
 	unsigned short low;      // offset bits 0..15
 	unsigned short selector; // a code segment selector in GDT or LDT
@@ -38,3 +39,4 @@ void set_handler_default(struct interrupt_entry *entry);
 void interrupt_handler(struct cpu_state cpu, unsigned int interrupt_number,
 		       struct stack_state stack);
 void interrupt_init();
+#endif

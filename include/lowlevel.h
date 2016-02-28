@@ -1,3 +1,5 @@
+#ifndef LOWLEVEL_H
+#define LOWLEVEL_H
 // Input a byte from port
 unsigned char in_byte(unsigned short port);
 // Output a byte to port
@@ -12,3 +14,4 @@ void cli();
 void sti();
 // Halt
 void hlt();
+#endif
