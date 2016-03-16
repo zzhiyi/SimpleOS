@@ -3,7 +3,7 @@
 void print_char(const char character, int col, int row, char attribute_byte)
 {
   /* Create a byte ( char ) pointer to the start of video memory */
-  unsigned char *vidmem = (unsigned char *)VIDEO_ADDRESS;
+  unsigned char volatile *vidmem = VIDEO_ADDRESS;
   /* If attribute byte is zero , assume the default style . */
   if (!attribute_byte) {
     attribute_byte = WHITE_ON_BLACK;
@@ -117,7 +117,7 @@ void print_dump(const unsigned char *pointer, unsigned int length)
   unsigned char low;
   unsigned char high;
 
-  for (int i = 0; i < length; i++) {
+  for (unsigned int i = 0; i < length; i++) {
     byte = pointer[i];
     low = byte & 0x0f;
     high = byte >> 4;

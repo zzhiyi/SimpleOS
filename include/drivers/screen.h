@@ -2,7 +2,7 @@
 #define SCREEN_H
 #include <lowlevel.h>
 #include <lib.h>
-#define VIDEO_ADDRESS 0xb8000
+#define VIDEO_ADDRESS ((unsigned char volatile *)0xb8000)
 #define MAX_COLS 80
 #define MAX_ROWS 25
 // Attribute byte for our default colour scheme .
