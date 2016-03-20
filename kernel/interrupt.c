@@ -4,6 +4,7 @@
 
 // interrupt has been remap, so it starts from 0x20
 extern void null_handler();
+extern void interrupt_handler_0x20();
 extern void interrupt_handler_0x21();
 extern void interrupt_load_idt(struct interrupt_idtr *idtr);
 
@@ -49,6 +50,9 @@ void interrupt_setup()
 		set_handler(&idt[i], null_handler);
 		set_handler_default(&idt[i]);
 	}
+	// set timer handler
+	set_handler(&idt[0x20], interrupt_handler_0x20);
+	set_handler_default(&idt[0x20]);
 	// set keyboard handler
 	set_handler(&idt[0x21], interrupt_handler_0x21);
 	set_handler_default(&idt[0x21]);

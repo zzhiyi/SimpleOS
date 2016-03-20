@@ -65,7 +65,7 @@ void PIC_init()
 {
   PIC_remap(PIC1_START_INTERRUPT, PIC2_START_INTERRUPT);
   // Enable only kerboard interrupt
-  out_byte(PIC1_DATA, 0xfd);
+  out_byte(PIC1_DATA, 0xfc);
   out_byte(PIC2_DATA, 0xff);
 }
 void io_wait()
