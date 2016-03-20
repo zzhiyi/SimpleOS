@@ -43,4 +43,3 @@ kernel.bin : kernel/kernel_entry.o $(OBJS)
 clean :
 		rm -rf *.bin *.dis *.o os.img
 		rm -rf kernel/*.o boot/*.bin drivers/*.o lib/*.o
-		rm /media/sf_D_DRIVE/os.img
