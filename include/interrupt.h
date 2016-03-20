@@ -1,5 +1,4 @@
-#ifndef INTERRUPT_H
-#define INTERRUPT_H
+#pragma once
 #include <lowlevel.h>
 #include <drivers/pic.h>
 #include <drivers/screen.h>
@@ -35,8 +34,10 @@ struct stack_state {
 } __attribute__((packed));
 
 void set_handler(struct interrupt_entry *entry, void *handler);
+
 void set_handler_default(struct interrupt_entry *entry);
+
 void interrupt_handler(struct cpu_state cpu, unsigned int interrupt_number,
 		       struct stack_state stack);
+
 void interrupt_init();
-#endif

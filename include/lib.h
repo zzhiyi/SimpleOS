@@ -1,4 +1,3 @@
-#ifndef LIB_H
-#define LIB_H
+#pragma once
+
 void memcpy(char *dst, const char *src, int size);
-#endif

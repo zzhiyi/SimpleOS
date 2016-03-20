@@ -1,5 +1,4 @@
-#ifndef KEYBOARD_H
-#define KEYBOARD_H
+#pragma once
 #include <lowlevel.h>
 #define KBD_DATA_PORT 0x60
 
@@ -9,4 +8,3 @@
  *  @return The scan code (NOT an ASCII character!)
  */
 unsigned char read_scan_code(void);
-#endif
