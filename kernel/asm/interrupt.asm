@@ -68,8 +68,8 @@ no_error_code_interrupt_handler 0x27       ; create handler for interrupt 0x27
 error_code_interrupt_handler    0x28       ; create handler for interrupt 0x28
 no_error_code_interrupt_handler 0x29       ; create handler for interrupt 0x29
 error_code_interrupt_handler    0x2A       ; create handler for interrupt 0x2A
-error_code_interrupt_handler    0x2B       ; create handler for interrupt 0x21
-error_code_interrupt_handler    0x2C       ; create handler for interrupt 0x22
-error_code_interrupt_handler    0x2D       ; create handler for interrupt 0x23
-error_code_interrupt_handler    0x2E       ; create handler for interrupt 0x24
-no_error_code_interrupt_handler 0x2F       ; create handler for interrupt 0x25
+error_code_interrupt_handler    0x2B       ; create handler for interrupt 0x2B
+error_code_interrupt_handler    0x2C       ; create handler for interrupt 0x2C
+error_code_interrupt_handler    0x2D       ; create handler for interrupt 0x2D
+error_code_interrupt_handler    0x2E       ; create handler for interrupt 0x2E
+no_error_code_interrupt_handler 0x2F       ; create handler for interrupt 0x2F

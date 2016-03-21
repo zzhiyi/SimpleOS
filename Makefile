@@ -1,6 +1,6 @@
 # Automatically generate lists of sources using wildcards.
 C_SOURCES = $(wildcard kernel/*.c drivers/*.c lib/*.c)
-ASM_SOURCES= $(wildcard kernel/*.asm)
+ASM_SOURCES= $(wildcard kernel/asm/*.asm)
 HEADERS = $(wildcard include/*.h include/drivers/*.h)
 OBJS = $(C_SOURCES:.c=.o)
 OBJS += $(ASM_SOURCES:.asm=.o)
@@ -24,7 +24,7 @@ os.img : boot/boot_sector.bin kernel.bin
 # This builds the binary of the kernel from two OBJSect files :
 # 	- the kernel_entry,which jumps to main() in the kernel
 # 	- the compiled C kernel
-kernel.bin : kernel/kernel_entry.o $(OBJS)
+kernel.bin : kernel/asm/kernel_entry.o $(OBJS)
 	ld -m elf_i386 --oformat binary --entry kernel_entry -Ttext 0x1000 $^ -o $@  
 
 # Generic rule for compiling C code to an OBJSect file
@@ -42,4 +42,4 @@ kernel.bin : kernel/kernel_entry.o $(OBJS)
 .PHONY : clean
 clean :
 		rm -rf *.bin *.dis *.o os.img
-		rm -rf kernel/*.o boot/*.bin drivers/*.o lib/*.o
+		rm -rf boot/*.bin drivers/*.o kernel/*.o kernel/asm/*.o lib/*.o

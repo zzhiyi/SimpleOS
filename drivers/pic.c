@@ -48,8 +48,6 @@ void PIC_remap(int offset1, int offset2)
  */
 void PIC_acknowledge(unsigned int interrupt_number)
 {
-  print(__FUNCTION__);
-  print("\n");
   if (interrupt_number < PIC1_START_INTERRUPT ||
       interrupt_number > PIC2_END_INTERRUPT) {
     return;
@@ -67,9 +65,4 @@ void PIC_init()
   // Enable only kerboard interrupt
   out_byte(PIC1_DATA, 0xfc);
   out_byte(PIC2_DATA, 0xff);
-}
-void io_wait()
-{
-  for (int i = 0; i < 1000000; i++)
-    ;
 }

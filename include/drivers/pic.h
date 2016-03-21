@@ -30,5 +30,3 @@ void PIC_remap(int offset1, int offset2);
 void PIC_acknowledge(unsigned int interrupt_number);
 
 void PIC_init();
-
-void io_wait();
